@@ -1,0 +1,56 @@
+Table Entity{
+  ID INTEGER [pk]
+  name VARCHAR(100)
+  phone VARCHAR(20)
+  email VARCHAR(25)
+  fax VARCHAR(30)
+  country VARCHAR(20)
+  state VARCHAR(20)
+  city VARCHAR(20)
+  street VARCHAR(20)
+  building VARCHAR(20)
+}
+Table Supplier{
+  ID INTEGER [pk]
+}
+ref: Supplier.ID > Entity.ID
+Table Items {
+  ID INTEGER [pk]
+  arrival_time TIMESTAMP
+  status varchar
+  location_letter CHAR(1)
+  location_num CHAR(3)
+  supplier_ID INTEGER [ref: > Supplier.ID]
+  distributor_ID INTEGER [ref: > Distributor.ID]
+  model_ID INTEGER [ref: > Model.ID]
+}
+
+Table Distributor{
+  ID INTEGER [pk]
+}
+ref: Distributor.ID > Entity.ID
+Table Company{
+  ID INTEGER [pk]
+}
+ref: Company.ID > Distributor.ID
+Table Person{
+  ID INTEGER [pk]
+}
+ref: Person.ID > Distributor.ID
+Table Model{
+  ID INTEGER [pk]
+  name VARCHAR(100)
+  weight FLOAT
+  company VARCHAR(50)
+  length FLOAT
+  width FLOAT
+  height FLOAT
+  desc VARCHAR(500)
+}
+
+Table Color{
+  color_pallete VARCHAR(10) [pk]
+  model_ID INTEGER [pk]
+}
+ref: Color.model_ID > Model.ID
+
