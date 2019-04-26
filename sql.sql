@@ -14,7 +14,9 @@ CREATE TABLE `Entity`
 
 CREATE TABLE `Supplier`
 (
-  `ID` INTEGER PRIMARY KEY
+  `ID` INTEGER PRIMARY KEY,
+  `contract_start` DATE,
+  `contract_end` DATE
 );
 
 CREATE TABLE `Items`
@@ -31,17 +33,34 @@ CREATE TABLE `Items`
 
 CREATE TABLE `Distributor`
 (
-  `ID` INTEGER PRIMARY KEY
+  `ID` INTEGER PRIMARY KEY,
+  `tax_No` VARCHAR(40)
 );
 
 CREATE TABLE `Company`
 (
-  `ID` INTEGER PRIMARY KEY
+  `ID` INTEGER PRIMARY KEY,
+  `register_No` VARCHAR(40)
 );
 
 CREATE TABLE `Person`
 (
-  `ID` INTEGER PRIMARY KEY
+  `ID` INTEGER PRIMARY KEY,
+  `SSN` VARCHAR(20)
+);
+
+CREATE TABLE `TV`
+(
+  `ID` INTEGER PRIMARY KEY,
+  `screensize` FLOAT,
+  `Model_No` VARCHAR(20),
+  `screentype` VARCHAR(10)
+);
+
+CREATE TABLE `Chargers`
+(
+  `ID` INTEGER PRIMARY KEY,
+  `voltage` FLOAT
 );
 
 CREATE TABLE `Model`
@@ -54,6 +73,27 @@ CREATE TABLE `Model`
   `width` FLOAT,
   `height` FLOAT,
   `desc` VARCHAR(500)
+);
+
+CREATE TABLE `Mobiles`
+(
+  `ID` INTEGER PRIMARY KEY,
+  `screensize` FLOAT,
+  `Model_No` VARCHAR(20)
+);
+
+CREATE TABLE `Video_Games`
+(
+  `ID` INTEGER PRIMARY KEY,
+  `genre` VARCHAR(20),
+  `release_date` DATE
+);
+
+CREATE TABLE `platform`
+(
+  `name` VARCHAR(20) PRIMARY KEY,
+  `version` VARCHAR(20) PRIMARY KEY,
+  `video_game_id` INTEGER PRIMARY KEY
 );
 
 CREATE TABLE `Color`
@@ -75,5 +115,15 @@ ALTER TABLE `Distributor` ADD FOREIGN KEY (`ID`) REFERENCES `Entity` (`ID`);
 ALTER TABLE `Company` ADD FOREIGN KEY (`ID`) REFERENCES `Distributor` (`ID`);
 
 ALTER TABLE `Person` ADD FOREIGN KEY (`ID`) REFERENCES `Distributor` (`ID`);
+
+ALTER TABLE `TV` ADD FOREIGN KEY (`ID`) REFERENCES `Model` (`ID`);
+
+ALTER TABLE `Chargers` ADD FOREIGN KEY (`ID`) REFERENCES `Model` (`ID`);
+
+ALTER TABLE `Mobiles` ADD FOREIGN KEY (`ID`) REFERENCES `Model` (`ID`);
+
+ALTER TABLE `Video_Games` ADD FOREIGN KEY (`ID`) REFERENCES `Model` (`ID`);
+
+ALTER TABLE `platform` ADD FOREIGN KEY (`video_game_id`) REFERENCES `Video_Games` (`ID`);
 
 ALTER TABLE `Color` ADD FOREIGN KEY (`model_ID`) REFERENCES `Model` (`ID`);
