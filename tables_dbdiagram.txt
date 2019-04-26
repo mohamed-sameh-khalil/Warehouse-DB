@@ -11,9 +11,11 @@ Table Entity{
   building VARCHAR(20)
 }
 Table Supplier{
-  ID INTEGER [pk]
+  ID INTEGER [pk, ref: > Entity.ID]
+  contract_start DATE
+  contract_end DATE
 }
-ref: Supplier.ID > Entity.ID
+
 Table Items {
   ID INTEGER [pk]
   arrival_time TIMESTAMP
@@ -25,18 +27,36 @@ Table Items {
   model_ID INTEGER [ref: > Model.ID]
 }
 
+
 Table Distributor{
-  ID INTEGER [pk]
+  ID INTEGER [pk, ref: > Entity.ID]
+  tax_No VARCHAR(40)
 }
-ref: Distributor.ID > Entity.ID
+
 Table Company{
-  ID INTEGER [pk]
+  ID INTEGER [pk, ref: > Distributor.ID]
+  register_No VARCHAR(40)
 }
-ref: Company.ID > Distributor.ID
+
 Table Person{
-  ID INTEGER [pk]
+  ID INTEGER [pk, ref: > Distributor.ID]
+  SSN VARCHAR(20)
 }
-ref: Person.ID > Distributor.ID
+
+Table TV {
+  ID INTEGER [pk, ref: > Model.ID]
+  screensize FLOAT
+  Model_No VARCHAR(20)
+  screentype VARCHAR(10)
+}
+
+
+Table Chargers {
+  ID INTEGER [pk, ref: > Model.ID]
+  voltage FLOAT
+}
+
+
 Table Model{
   ID INTEGER [pk]
   name VARCHAR(100)
@@ -48,9 +68,34 @@ Table Model{
   desc VARCHAR(500)
 }
 
+Table Mobiles {
+  ID INTEGER [pk, ref: > Model.ID]
+  screensize FLOAT
+  Model_No VARCHAR(20)
+}
+
+Table Video_Games {
+  ID INTEGER [pk, ref: > Model.ID]
+  genre VARCHAR(20)
+  release_date DATE
+}
+
+Table platform{
+  name VARCHAR(20) [pk]
+  version VARCHAR(20) [pk]
+  video_game_id INTEGER [pk, ref: > Video_Games.ID]
+}
+
+
 Table Color{
   color_pallete VARCHAR(10) [pk]
-  model_ID INTEGER [pk]
+  model_ID INTEGER [pk, ref: > Model.ID]
 }
-ref: Color.model_ID > Model.ID
+
+
+
+
+
+
+
 
