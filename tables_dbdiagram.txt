@@ -19,12 +19,13 @@ Table Supplier{
 Table Items {
   ID INTEGER [pk]
   arrival_time TIMESTAMP
+  color_pallete VARCHAR(10)
   status varchar
   location_letter CHAR(1)
   location_num CHAR(3)
   supplier_ID INTEGER [ref: > Supplier.ID]
   distributor_ID INTEGER [ref: > Distributor.ID]
-  model_ID INTEGER [ref: > Model.ID]
+  Category_ID INTEGER [ref: > Category.ID]
 }
 
 
@@ -44,7 +45,7 @@ Table Person{
 }
 
 Table TV {
-  ID INTEGER [pk, ref: > Model.ID]
+  ID INTEGER [pk, ref: > Category.ID]
   screensize FLOAT
   Model_No VARCHAR(20)
   screentype VARCHAR(10)
@@ -52,12 +53,12 @@ Table TV {
 
 
 Table Chargers {
-  ID INTEGER [pk, ref: > Model.ID]
+  ID INTEGER [pk, ref: > Category.ID]
   voltage FLOAT
 }
 
 
-Table Model{
+Table Category{
   ID INTEGER [pk]
   name VARCHAR(100)
   weight FLOAT
@@ -69,13 +70,13 @@ Table Model{
 }
 
 Table Mobiles {
-  ID INTEGER [pk, ref: > Model.ID]
+  ID INTEGER [pk, ref: > Category.ID]
   screensize FLOAT
   Model_No VARCHAR(20)
 }
 
 Table Video_Games {
-  ID INTEGER [pk, ref: > Model.ID]
+  ID INTEGER [pk, ref: > Category.ID]
   genre VARCHAR(20)
   release_date DATE
 }
@@ -89,7 +90,7 @@ Table platform{
 
 Table Color{
   color_pallete VARCHAR(10) [pk]
-  model_ID INTEGER [pk, ref: > Model.ID]
+  Category_ID INTEGER [pk, ref: > Category.ID]
 }
 
 

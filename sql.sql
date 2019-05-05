@@ -23,12 +23,13 @@ CREATE TABLE `Items`
 (
   `ID` INTEGER PRIMARY KEY,
   `arrival_time` TIMESTAMP,
+  `color_pallete` VARCHAR(10),
   `status` varchar(255),
   `location_letter` CHAR(1),
   `location_num` CHAR(3),
   `supplier_ID` INTEGER,
   `distributor_ID` INTEGER,
-  `model_ID` INTEGER
+  `Category_ID` INTEGER
 );
 
 CREATE TABLE `Distributor`
@@ -63,7 +64,7 @@ CREATE TABLE `Chargers`
   `voltage` FLOAT
 );
 
-CREATE TABLE `Model`
+CREATE TABLE `Category`
 (
   `ID` INTEGER PRIMARY KEY,
   `name` VARCHAR(100),
@@ -99,7 +100,7 @@ CREATE TABLE `platform`
 CREATE TABLE `Color`
 (
   `color_pallete` VARCHAR(10) PRIMARY KEY,
-  `model_ID` INTEGER PRIMARY KEY
+  `Category_ID` INTEGER PRIMARY KEY
 );
 
 ALTER TABLE `Supplier` ADD FOREIGN KEY (`ID`) REFERENCES `Entity` (`ID`);
@@ -108,7 +109,7 @@ ALTER TABLE `Items` ADD FOREIGN KEY (`supplier_ID`) REFERENCES `Supplier` (`ID`)
 
 ALTER TABLE `Items` ADD FOREIGN KEY (`distributor_ID`) REFERENCES `Distributor` (`ID`);
 
-ALTER TABLE `Items` ADD FOREIGN KEY (`model_ID`) REFERENCES `Model` (`ID`);
+ALTER TABLE `Items` ADD FOREIGN KEY (`Category_ID`) REFERENCES `Category` (`ID`);
 
 ALTER TABLE `Distributor` ADD FOREIGN KEY (`ID`) REFERENCES `Entity` (`ID`);
 
@@ -116,14 +117,14 @@ ALTER TABLE `Company` ADD FOREIGN KEY (`ID`) REFERENCES `Distributor` (`ID`);
 
 ALTER TABLE `Person` ADD FOREIGN KEY (`ID`) REFERENCES `Distributor` (`ID`);
 
-ALTER TABLE `TV` ADD FOREIGN KEY (`ID`) REFERENCES `Model` (`ID`);
+ALTER TABLE `TV` ADD FOREIGN KEY (`ID`) REFERENCES `Category` (`ID`);
 
-ALTER TABLE `Chargers` ADD FOREIGN KEY (`ID`) REFERENCES `Model` (`ID`);
+ALTER TABLE `Chargers` ADD FOREIGN KEY (`ID`) REFERENCES `Category` (`ID`);
 
-ALTER TABLE `Mobiles` ADD FOREIGN KEY (`ID`) REFERENCES `Model` (`ID`);
+ALTER TABLE `Mobiles` ADD FOREIGN KEY (`ID`) REFERENCES `Category` (`ID`);
 
-ALTER TABLE `Video_Games` ADD FOREIGN KEY (`ID`) REFERENCES `Model` (`ID`);
+ALTER TABLE `Video_Games` ADD FOREIGN KEY (`ID`) REFERENCES `Category` (`ID`);
 
 ALTER TABLE `platform` ADD FOREIGN KEY (`video_game_id`) REFERENCES `Video_Games` (`ID`);
 
-ALTER TABLE `Color` ADD FOREIGN KEY (`model_ID`) REFERENCES `Model` (`ID`);
+ALTER TABLE `Color` ADD FOREIGN KEY (`Category_ID`) REFERENCES `Category` (`ID`);
