@@ -1,28 +1,28 @@
 Table Entity{
   ID pk [pk]
-  name 
-  phone 
-  email 
-  fax 
-  country 
-  state 
-  city 
-  street 
-  building 
+  name -
+  phone - 
+  email -
+  fax -
+  country -
+  state -
+  city -
+  street -
+  building -
 }
 Table Supplier{
   ID pk-fk [pk, ref: > Entity.ID]
-  contract_start
-  contract_end
+  contract_start -
+  contract_end -
 }
 
 Table Items {
   ID pk [pk]
-  arrival_time
-  color_pallete 
-  status 
-  location_letter
-  location_num
+  arrival_time -
+  color_pallete -
+  status -
+  location_letter -
+  location_num -
   supplier_ID fk [ref: > Supplier.ID]
   distributor_ID fk [ref: > Distributor.ID]
   Category_ID fk [ref: > Category.ID]
@@ -31,54 +31,53 @@ Table Items {
 
 Table Distributor{
   ID pk-fk [pk, ref: > Entity.ID]
-  tax_No 
+  tax_No -
 }
 
 Table Company{
   ID pk-fk [pk, ref: > Distributor.ID]
-  register_No 
+  register_No -
 }
 
 Table Person{
   ID pk-fk [pk, ref: > Distributor.ID]
-  SSN 
+  SSN -
 }
 
 Table TV {
   ID pk-fk [pk, ref: > Category.ID]
-  screensize 
-  Model_No 
-  screentype 
+  screensize -
+  Model_No -
+  screentype -
 }
 
 
 Table Chargers {
   ID pk-fk [pk, ref: > Category.ID]
-  voltage 
+  voltage -
 }
-
 
 Table Category{
   ID pk [pk]
-  name 
-  weight 
-  company 
-  length 
-  width 
-  height 
-  desc 
+  name -
+  weight -
+  company -
+  length -
+  width -
+  height -
+  desc -
 }
 
 Table Mobiles {
   ID pk-fk [pk, ref: > Category.ID]
-  screensize 
-  Model_No 
+  screensize -
+  Model_No -
 }
 
 Table Video_Games {
   ID pk-fk [pk, ref: > Category.ID]
-  genre 
-  release_date
+  genre -
+  release_date -
 }
 
 Table platform{
