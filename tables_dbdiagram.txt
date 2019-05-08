@@ -1,96 +1,96 @@
 Table Entity{
-  ID INTEGER [pk]
-  name VARCHAR(100)
-  phone VARCHAR(20)
-  email VARCHAR(25)
-  fax VARCHAR(30)
-  country VARCHAR(20)
-  state VARCHAR(20)
-  city VARCHAR(20)
-  street VARCHAR(20)
-  building VARCHAR(20)
+  ID pk [pk]
+  name 
+  phone 
+  email 
+  fax 
+  country 
+  state 
+  city 
+  street 
+  building 
 }
 Table Supplier{
-  ID INTEGER [pk, ref: > Entity.ID]
-  contract_start DATE
-  contract_end DATE
+  ID pk-fk [pk, ref: > Entity.ID]
+  contract_start
+  contract_end
 }
 
 Table Items {
-  ID INTEGER [pk]
-  arrival_time TIMESTAMP
-  color_pallete VARCHAR(10)
-  status varchar
-  location_letter CHAR(1)
-  location_num CHAR(3)
-  supplier_ID INTEGER [ref: > Supplier.ID]
-  distributor_ID INTEGER [ref: > Distributor.ID]
-  Category_ID INTEGER [ref: > Category.ID]
+  ID pk [pk]
+  arrival_time
+  color_pallete 
+  status 
+  location_letter
+  location_num
+  supplier_ID fk [ref: > Supplier.ID]
+  distributor_ID fk [ref: > Distributor.ID]
+  Category_ID fk [ref: > Category.ID]
 }
 
 
 Table Distributor{
-  ID INTEGER [pk, ref: > Entity.ID]
-  tax_No VARCHAR(40)
+  ID pk-fk [pk, ref: > Entity.ID]
+  tax_No 
 }
 
 Table Company{
-  ID INTEGER [pk, ref: > Distributor.ID]
-  register_No VARCHAR(40)
+  ID pk-fk [pk, ref: > Distributor.ID]
+  register_No 
 }
 
 Table Person{
-  ID INTEGER [pk, ref: > Distributor.ID]
-  SSN VARCHAR(20)
+  ID pk-fk [pk, ref: > Distributor.ID]
+  SSN 
 }
 
 Table TV {
-  ID INTEGER [pk, ref: > Category.ID]
-  screensize FLOAT
-  Model_No VARCHAR(20)
-  screentype VARCHAR(10)
+  ID pk-fk [pk, ref: > Category.ID]
+  screensize 
+  Model_No 
+  screentype 
 }
 
 
 Table Chargers {
-  ID INTEGER [pk, ref: > Category.ID]
-  voltage FLOAT
+  ID pk-fk [pk, ref: > Category.ID]
+  voltage 
 }
 
 
 Table Category{
-  ID INTEGER [pk]
-  name VARCHAR(100)
-  weight FLOAT
-  company VARCHAR(50)
-  length FLOAT
-  width FLOAT
-  height FLOAT
-  desc VARCHAR(500)
+  ID pk [pk]
+  name 
+  weight 
+  company 
+  length 
+  width 
+  height 
+  desc 
 }
 
 Table Mobiles {
-  ID INTEGER [pk, ref: > Category.ID]
-  screensize FLOAT
-  Model_No VARCHAR(20)
+  ID pk-fk [pk, ref: > Category.ID]
+  screensize 
+  Model_No 
 }
 
 Table Video_Games {
-  ID INTEGER [pk, ref: > Category.ID]
-  genre VARCHAR(20)
-  release_date DATE
+  ID pk-fk [pk, ref: > Category.ID]
+  genre 
+  release_date
 }
 
 Table platform{
-  name VARCHAR(20) [pk]
-  version VARCHAR(20) [pk]
-  video_game_id INTEGER [pk, ref: > Video_Games.ID]
+  name pk [pk]
+  version pk [pk]
+  video_game_id pk-fk [pk, ref: > Video_Games.ID]
 }
 
 
 Table Color{
-  color_pallete VARCHAR(10) [pk]
-  Category_ID INTEGER [pk, ref: > Category.ID]
+  color_pallete pk [pk]
+  Category_ID pk-fk [pk, ref: > Category.ID]
 }
 
 
