@@ -54,7 +54,7 @@ CREATE TABLE Items
     ID INTEGER PRIMARY KEY NOT NULL,
     arrival_time TIMESTAMP NOT NULL,
     color_pallete VARCHAR(10) NOT NULL,
-    `status` varchar(255) NOT NULL,
+    status varchar(255) NOT NULL,
     location_letter CHAR(1) NOT NULL,
     location_num CHAR(3) NOT NULL,
     supplier_ID INTEGER NOT NULL,
@@ -80,7 +80,7 @@ CREATE TABLE Category
     length FLOAT NOT NULL,
     width FLOAT NOT NULL,
     height FLOAT NOT NULL,
-    `desc` VARCHAR(500)
+    desc VARCHAR(500)
 );
 
 CREATE TABLE TV
@@ -102,6 +102,7 @@ CREATE TABLE Chargers
     FOREIGN KEY (ID) REFERENCES Category (ID)
     ON DELETE RESTRICT
     ON UPDATE CASCADE
+
 );
 
 CREATE TABLE Mobiles
