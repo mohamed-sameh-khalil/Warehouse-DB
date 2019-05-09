@@ -1,7 +1,13 @@
 1. Color is multivalued in category
+
 2. Item has a new attribute called color
+
 3. Item is supplied by one supplier only
+
 4. Distributor can get many items
+
 5. Item is connected to distributor in a partial-partial relationship
+
 6. Item has one category
+
 7. platform is a multivalued composite attribute in videogame
